@@ -53,7 +53,12 @@ func (j *Jar) AddCookies(cookies []*http.Cookie) {
 	defer j.mu.Unlock()
 
 	for _, cookie := range cookies {
-		uri, err := url.Parse(cookie.Domain)
+		prefix := "http://"
+		if cookie.Secure {
+			prefix = "https://"
+		}
+
+		uri, err := url.Parse(prefix + cookie.Domain + cookie.Path)
 		if err != nil {
 			continue
 		}
