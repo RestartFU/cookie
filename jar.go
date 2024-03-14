@@ -62,7 +62,7 @@ func (j *Jar) AddCookies(cookies []*http.Cookie) {
 		if err != nil {
 			continue
 		}
-		j.jar[cookie.Domain] = append(j.jar[uri.Host], cookie)
+		j.jar[uri.Host] = append(j.jar[uri.Host], cookie)
 	}
 }
 
